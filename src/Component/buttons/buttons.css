@@ -7,5 +7,26 @@
 button {
     margin: 20px;
     padding: 4px;
+    font-family: poke-font, sans-serif;
+    text-shadow: 1px 1px 0 yellow;
+    width: 200px;
+    box-shadow: 6px 6px 10px darkblue;
+    background-color: antiquewhite;
+    border: solid 10px blue;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    transition-duration: 1s;
+    background-color: yellow;
 
 }
+
+button:disabled {
+    color: black;
+    background-color: gray;
+    cursor: not-allowed;
+
+}
+

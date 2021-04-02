@@ -25,7 +25,7 @@ function Pokemon({ url }) {
     }
     useEffect(() => {
         catchOnlyThisOne()
-    },[onePokemon])
+    },[])
     return (
         <li key={url} className='poke-card'>
             {error && <div className='error-wrapper'><img src={oak} alt='oak'/><p>{error}</p></div>}
