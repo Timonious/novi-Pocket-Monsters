@@ -1,0 +1,107 @@
+.poke-card {
+    display: flex;
+    align-content: center;
+    border-radius: 10px;
+    background-color: yellow;
+    box-shadow: 2px 2px 5px darkgoldenrod;
+    list-style-type: none;
+    padding: 6px;
+}
+
+.name {
+    text-transform: capitalize;
+
+}
+p {
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.weight {
+    background-color: yellow;
+}
+.poke-pica {
+    background-color: antiquewhite;
+    box-shadow: 2px 2px 5px black;
+    border: solid 5px yellow;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+li div {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 3px;
+    width : 140px;
+}
+
+.abilities-list {
+    border-radius: 3px;
+    background-color: antiquewhite;
+    box-shadow: 2px 2px 5px black;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+.ability {
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.normal {
+    background-color: grey;
+}
+
+.fire {
+    background-color: red;
+}
+
+.water {
+    background-color: blue;
+}
+
+.electric {
+    background-color: yellow;
+}
+.grass {
+    background-color: green;
+}
+.ice {
+    background-color: deepskyblue;
+}
+.fighting {
+    background-color: darkred;
+}
+.poison {
+background-color: purple;
+}
+.ground {
+    background-color: goldenrod;
+}
+.flying {
+    background-color: cadetblue;
+}
+.psychic {
+    background-color: hotpink;
+}
+.bug {
+    background-color: yellowgreen;
+}
+.rock {
+    background-color: tan;
+}
+.ghost {
+    background-color: darkslateblue;
+}
+.dragon {
+    background-color: blueviolet;
+}
+.dark {
+    background-color: saddlebrown;
+}
+.steel {
+    background-color: silver;
+}
+.fairy{
+    background-color: lightpink;
+}
