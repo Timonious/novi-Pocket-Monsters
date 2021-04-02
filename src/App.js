@@ -3,14 +3,15 @@ import Pokemon from './Component/card/Pokemon'
 import axios from 'axios'
 import './App.css';
 import Buttons from "./Component/buttons/Buttons";
-import logo from './assets/Pokemon_logo_PNG3.png'
+import oak from "./Component/card/oak-error.jpeg";
 
 function App() {
     const [pokemon, setPokemon] = useState([]),
         [pokeListUrl, setPokeListUrl] = useState(`https://pokeapi.co/api/v2/pokemon/`),
         [nextUrl, setNextUrl] = useState(null),
-        [previousUrl, setPreviousUrl] = useState(null)
-    const pokeDex = async () => {
+        [previousUrl, setPreviousUrl] = useState(null),
+        [error, setError] = useState(''),
+        pokeDex = async () => {
         try {
             const result = await axios.get(pokeListUrl)
             // console.log(result)
@@ -19,7 +20,7 @@ function App() {
             setPreviousUrl(result.data.previous)
             console.log(pokemon[0])
         } catch (e) {
-            console.log('Something went wrong')
+            setError('Oak: Your Pokedex seems to be out of batteries')
             console.error(e)
         }
     }
@@ -29,6 +30,7 @@ function App() {
     return (
         <>
             <Buttons nextUrl={nextUrl} previousUrl={previousUrl} setPokeListUrl={setPokeListUrl}/>
+            {error && <div className='error-wrapper'><img src={oak} alt='oak'/><p>{error}</p></div>}
             {pokemon ? <ul className='card-collection'>
                 {pokemon.map((monster) => {
                     return (

@@ -3,7 +3,7 @@ import './buttons.css'
 
 const Buttons = ({ setPokeListUrl, nextUrl, previousUrl }) => {
     const [disableNextButton, toggleDisableNextButton] = useState(false),
-     [disablePreviousButton, toggleDisablePreviousButton] = useState(false),
+     [disablePreviousButton, toggleDisablePreviousButton] = useState(true),
         next = () => {setPokeListUrl(nextUrl)
             console.log(nextUrl)},
         previous = () => {setPokeListUrl(previousUrl)
@@ -11,10 +11,15 @@ const Buttons = ({ setPokeListUrl, nextUrl, previousUrl }) => {
         disabler = () => {
         if (nextUrl) {
             toggleDisableNextButton(false)
-
+        }
+        else {
+            toggleDisableNextButton(true)
         }
         if (previousUrl) {
             toggleDisablePreviousButton(false)
+        }
+        else {
+            toggleDisablePreviousButton(true)
         }
         }
         useEffect(() =>{disabler()}, [previous,next])

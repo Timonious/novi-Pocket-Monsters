@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import './pokemonCard.css'
+import oak from './oak-error.jpeg'
 
 function Pokemon({ url }) {
     const [onePokemon, setOnePokemon] = useState({}),
         [moves, setMoves] = useState(0),
-        [abilities, setAbilities] = useState([])
+        [abilities, setAbilities] = useState([]),
+        [error, setError] = useState('')
     const catchOnlyThisOne = async () => {
         try {
             const {data} = await axios.get(url)
@@ -17,7 +19,8 @@ function Pokemon({ url }) {
         }
         catch (e) {
             console.log('Something went wrong')
-            console.error(e)
+            setError("Deze Pokeball was leeg!")
+            alert(e)
         }
     }
     useEffect(() => {
@@ -25,6 +28,7 @@ function Pokemon({ url }) {
     },[onePokemon])
     return (
         <li key={url} className='poke-card'>
+            {error && <div className='error-wrapper'><img src={oak} alt='oak'/><p>{error}</p></div>}
             {onePokemon.types && <div className={onePokemon.types[0].type.name}>
             <h3 className='name'>{onePokemon.name}</h3>
             {onePokemon.sprites && <img src={onePokemon.sprites.front_default} className='poke-pica' alt={onePokemon.name}/>}
