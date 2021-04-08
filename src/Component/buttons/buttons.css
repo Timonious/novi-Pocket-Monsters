@@ -1,7 +1,6 @@
 .buttons-wrapper {
     display: flex;
     align-self: center;
-    margin-top: 400px;
 }
 
 button {

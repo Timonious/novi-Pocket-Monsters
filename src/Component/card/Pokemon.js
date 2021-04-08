@@ -11,7 +11,6 @@ function Pokemon({ url }) {
     const catchOnlyThisOne = async () => {
         try {
             const {data} = await axios.get(url)
-            // console.log(data)
             setOnePokemon(data)
             setMoves(data.moves.length)
             setAbilities(data.abilities)
@@ -19,19 +18,19 @@ function Pokemon({ url }) {
         }
         catch (e) {
             console.log('Something went wrong')
-            setError("Deze Pokeball was leeg!")
+            setError("empty POKEBALL!")
             alert(e)
         }
     }
     useEffect(() => {
         catchOnlyThisOne()
-    },[])
+    },[url]);
     return (
         <li key={url} className='poke-card'>
             {error && <div className='error-wrapper'><img src={oak} alt='oak'/><p>{error}</p></div>}
             {onePokemon.types && <div className={onePokemon.types[0].type.name}>
-            <h3 className='name'>{onePokemon.name}</h3>
-            {onePokemon.sprites && <img src={onePokemon.sprites.front_default} className='poke-pica' alt={onePokemon.name}/>}
+                <div className='card-head'><h3 className='name'>{onePokemon.name} </h3><h2>#{onePokemon.id}</h2></div>
+            {onePokemon.sprites && <img src={onePokemon.sprites.other['official-artwork'].front_default} className='poke-pica' alt={onePokemon.name}/>}
                 <p className='weight'>weight: {onePokemon.weight/10} Kg</p>
             <ul className='abilities-list'>abilities: {abilities.map((ability) => {
                 return (<li className='ability' key={ability.slot}>{ability.slot && ability.ability.name}</li>)

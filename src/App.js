@@ -9,18 +9,19 @@ import load from './assets/pokeball loader.gif'
 function App() {
     const [pokemon, setPokemon] = useState([]),
         [pokeListUrl, setPokeListUrl] = useState(`https://pokeapi.co/api/v2/pokemon/`),
-        [nextUrl, setNextUrl] = useState(null),
-        [previousUrl, setPreviousUrl] = useState(null),
+        [nextUrl, setNextUrl] = useState(''),
+        [previousUrl, setPreviousUrl] = useState(''),
         [error, setError] = useState(''),
         [loading, toggleLoading] = useState(false),
         pokeDex = async () => {
             toggleLoading(true)
             setError('')
             try {
-                const result = await axios.get(pokeListUrl)
-                setPokemon(result.data.results)
-                setNextUrl(result.data.next)
-                setPreviousUrl(result.data.previous)
+                const { data: {results, next, previous}} = await axios.get(pokeListUrl)
+                setPokemon(results)
+                setNextUrl(next)
+                setPreviousUrl(previous)
+                // console.log(data)
             } catch (e) {
                 setError('Oak: Your Pokedex seems to be out of batteries')
                 console.error(e)
@@ -29,20 +30,28 @@ function App() {
         }
     useEffect(() => {
         pokeDex()
-    }, [pokeListUrl])
+    }, [pokeListUrl]);
     return (
-        <>
-            <Buttons nextUrl={nextUrl} previousUrl={previousUrl} setPokeListUrl={setPokeListUrl}/>
+        <section className='page'>
+            <Buttons
+                nextUrl={nextUrl}
+                previousUrl={previousUrl}
+                setPokeListUrl={setPokeListUrl}
+                pokeListUrl={pokeListUrl}
+            />
             {error && <div className='error-wrapper'><img src={oak} alt='oak'/><p>{error}</p></div>}
             {loading && <div className='loading-wrapper'><img src={load} alt='loading'/><p>YOU used POKEBALL!</p></div>}
-            {pokemon ? <ul className='card-collection'>
-                {pokemon.map((monster) => {
-                    return (
-                        <Pokemon url={monster.url}/>)
-                })}
-            </ul> : <p>Loading PokeDex, Please wait</p>}
-
-        </>
+             <ul className='card-collection'>
+                {pokemon && pokemon.map((monster) => <Pokemon url={monster.url}/>
+                )}
+            </ul>
+            <Buttons
+                nextUrl={nextUrl}
+                previousUrl={previousUrl}
+                setPokeListUrl={setPokeListUrl}
+                pokeListUrl={pokeListUrl}
+            />
+        </section>
     );
 }
 

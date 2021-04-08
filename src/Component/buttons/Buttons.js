@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import './buttons.css'
 
-const Buttons = ({ setPokeListUrl, nextUrl, previousUrl }) => {
+const Buttons = ({ setPokeListUrl, pokeListUrl, nextUrl, previousUrl }) => {
     const [disableNextButton, toggleDisableNextButton] = useState(false),
      [disablePreviousButton, toggleDisablePreviousButton] = useState(true),
         next = () => {setPokeListUrl(nextUrl)
-            console.log(nextUrl)},
+            console.log(pokeListUrl)},
         previous = () => {setPokeListUrl(previousUrl)
-            console.log(previousUrl)},
+            console.log(pokeListUrl)},
         disabler = () => {
         if (nextUrl) {
             toggleDisableNextButton(false)
